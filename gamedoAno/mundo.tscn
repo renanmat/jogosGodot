@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://dungeon.tres" type="TileSet" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://inimigo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://inventario.tscn" type="PackedScene" id=4]
+
+[node name="main" type="Node2D"]
+position = Vector2( 65.5661, -9.45407 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 131069, 1, 0, 131071, 1, 0, 65537, 1, 0, 65540, 1, 0, 65543, 1, 0, 65546, 1, 0, 65549, 1, 0, 65550, 1, 0, 262141, 0, 0, 196609, 0, 0, 196613, 0, 0, 196617, 0, 0, 196621, 0, 0, 393213, 0, 0, 393217, 0, 0, 393221, 0, 0, 393225, 0, 0, 393229, 0, 0, 524285, 0, 0, 589825, 0, 0, 589829, 0, 0, 589833, 0, 0, 589837, 0, 0, 720893, 0, 0, 655361, 0, 0 )
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 146.971, 144.066 )
+
+[node name="inimigo" parent="." instance=ExtResource( 3 )]
+position = Vector2( 134.13, 85.3385 )
+distancia = 120
+
+[node name="inimigo2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 197.582, 54.8673 )
+direita = true
+distancia = 100
+
+[node name="inimigo3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 162.809, 121.904 )
+distancia = 70
+
+[node name="inventario" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
+position = Vector2( 39.34, 75.2067 )
+

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://imagens/0x72_16x16DungeonTileset.v1.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.7665, 9.20538 )
+
+[node name="tile_dungeon" type="Node2D"]
+position = Vector2( 128, 80 )
+
+[node name="chao" type="Sprite" parent="."]
+position = Vector2( -96, -55.5881 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 64, 48 )
+
+[node name="parede" type="Sprite" parent="."]
+position = Vector2( -39.3816, -63.3529 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 48, 32 )
+
+[node name="Static" type="StaticBody2D" parent="parede"]
+
+[node name="shape" type="CollisionShape2D" parent="parede/Static"]
+position = Vector2( 0, 6.47067 )
+shape = SubResource( 1 )
+

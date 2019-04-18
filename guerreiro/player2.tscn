@@ -1,0 +1,177 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://player2.gd" type="Script" id=1]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile001.png" type="Texture" id=2]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile002.png" type="Texture" id=3]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile003.png" type="Texture" id=4]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile004.png" type="Texture" id=5]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile000.png" type="Texture" id=6]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile012.png" type="Texture" id=7]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile013.png" type="Texture" id=8]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile014.png" type="Texture" id=9]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile018.png" type="Texture" id=10]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile019.png" type="Texture" id=11]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile020.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "direita",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "parado",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "escudo",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "ataque",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "defesa",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23.0228, 62.2043 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2.41409, 11.53 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "atck"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "ataque" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ini_atck"
+}, {
+"args": [  ],
+"method": "fim_atck"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "parado", "parado", "parado", "parado", "parado" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.6, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.984314, 0.54902, 0.54902, 1 ), Color( 0.984314, 0.278431, 0.278431, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 0.560784 ), Color( 1, 0, 0.00392157, 0 ), Color( 1, 0, 0.00392157, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "die"
+} ]
+}
+
+[node name="player2" type="KinematicBody2D"]
+position = Vector2( 429.566, 510.703 )
+collision_layer = 12
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.968627, 0.0352941, 0.0352941, 1 )
+margin_left = -26.0
+margin_top = -89.0
+margin_right = 13.0
+margin_bottom = -75.0
+text = "50/50"
+align = 1
+valign = 1
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2, 0 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "ataque"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -5.63336, 18.5649 )
+scale = Vector2( 1.22747, 0.951095 )
+shape = SubResource( 2 )
+
+[node name="area_atck" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="area_atck"]
+position = Vector2( 32.6691, -4.906 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/atck = SubResource( 5 )
+anims/die = SubResource( 4 )
+
+[connection signal="body_entered" from="area_atck" to="." method="area_atck"]

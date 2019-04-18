@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://inimigo.gd" type="Script" id=1]
+[ext_resource path="res://imagens/0x72_16x16DungeonTileset.v1.png" type="Texture" id=2]
+[ext_resource path="res://col_ini.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.57023
+height = 10.5589
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 6.9351
+height = 8.12424
+
+[node name="inimigo" type="KinematicBody2D"]
+editor/display_folded = true
+position = Vector2( 147.394, 83.9046 )
+collision_layer = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 112, 80, 16, 32 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0.716972, 6.45275 )
+shape = SubResource( 2 )
+
+[node name="col_ini" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="shape" type="CollisionShape2D" parent="col_ini"]
+position = Vector2( 0.668045, 6.41307 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="col_ini" to="col_ini" method="_on_col_ini_body_entered"]

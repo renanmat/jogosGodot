@@ -1,0 +1,142 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile012.png" type="Texture" id=2]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile013.png" type="Texture" id=3]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile014.png" type="Texture" id=4]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile001.png" type="Texture" id=5]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile002.png" type="Texture" id=6]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile003.png" type="Texture" id=7]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile004.png" type="Texture" id=8]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile018.png" type="Texture" id=9]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile019.png" type="Texture" id=10]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile020.png" type="Texture" id=11]
+[ext_resource path="res://imagens/ezgif-4-2d0910826b3f-png-300x315-sprite-png/tile000.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "escudo",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "direita",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "defesa",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "ataque",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "parado",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23.0228, 71.4596 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 38.5221, 24.2406 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1.98932, 10 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 0.9, 1.1, 1.4, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "parado", "parado", "parado", "parado", "parado", "parado", "parado", "parado" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.960784, 0.564706, 0.564706, 1 ), Color( 0.976471, 0.294118, 0.294118, 1 ), Color( 0.980392, 0, 0, 1 ), Color( 0.980392, 0, 0, 1 ), Color( 0.980392, 0, 0, 0 ), Color( 0.980392, 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "die"
+} ]
+}
+
+[node name="player1" type="KinematicBody2D"]
+position = Vector2( 486.997, 115.805 )
+collision_layer = 3
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2, 0 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "parado"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4.7652, 4.56369 )
+scale = Vector2( 1.22747, 0.951095 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -2.67282, -9.77405 )
+shape = SubResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.917647, 0.0627451, 0.0627451, 1 )
+margin_left = -34.3823
+margin_top = -98.0
+margin_right = 33.6177
+margin_bottom = -79.0
+size_flags_stretch_ratio = 0.0
+text = "50/50"
+align = 1
+valign = 1
+
+[node name="area_atck" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="shape" type="CollisionShape2D" parent="area_atck"]
+position = Vector2( 43.7384, -4.28291 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/die = SubResource( 5 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="area_atck" to="." method="_on_area_atck_body_entered"]
